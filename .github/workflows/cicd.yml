@@ -55,6 +55,7 @@ jobs:
           image: europe-west1-docker.pkg.dev/pure-pact-379310/workshop/workshop:${{ github.sha }}
           env_vars: |
             NODE_ENV=production
+            
           flags: "--port=8080"
           region: "europe-west1"
 
