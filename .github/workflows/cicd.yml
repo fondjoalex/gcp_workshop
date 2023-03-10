@@ -44,4 +44,4 @@ jobs:
        - id: 'auth'
          uses: 'google-github-actions/auth@v1'
          with:
-            credentials_json: "${{ secrets.SA_KEY }}"
+          credentials_json: "${{ secrets.SA_KEY }}"
