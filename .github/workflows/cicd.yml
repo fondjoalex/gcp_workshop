@@ -55,12 +55,12 @@ jobs:
           image: europe-west1-docker.pkg.dev/pure-pact-379310/workshop/workshop:${{ github.sha }}
           env_vars: |
             NODE_ENV=production
+            PGDATABASE=postgres
+            PGHOST=${{ secrets.PGHOST }}
+            PGPORT=5432
+            PGUSER=${{ secrets.PGUSER }}
             PGPASSWORD=${{ secrets.PGPASSWORD }}
-            PGDATABASE=${{ secrets.PGPDATABASE }}
-            PGUSER=${{ secrets.PGPUSER }}
-            PGHOST=${{ secrets.PGPHOST }}
-            PGPORT=${{ secrets.PGPPORT }}
-            
+
           flags: "--port=8080"
           region: "europe-west1"
 
