@@ -40,3 +40,8 @@ jobs:
           push: true
           tags: |
             europe-west1-docker.pkg.dev/pure-pact-379310/workshop/workshop:${{ github.sha }}
+      # setup gcloud CLI
+       - id: 'auth'
+         uses: 'google-github-actions/auth@v1'
+         with:
+            credentials_json: "${{ secrets.SA_KEY }}"
