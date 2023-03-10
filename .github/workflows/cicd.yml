@@ -40,8 +40,25 @@ jobs:
           push: true
           tags: |
             europe-west1-docker.pkg.dev/pure-pact-379310/workshop/workshop:${{ github.sha }}
+      
       # setup gcloud CLI
       - id: 'auth'
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: "${{ secrets.SA_KEY }}"
+
+      # not passing '--allow-unauthenticated' flag here because it will not work in a cicd pipelines
+      - id: "deploy"
+        uses: "google-github-actions/deploy-cloudrun@v1"
+        with:
+          service: "workshop"
+          image: europe-west1-docker.pkg.dev/pure-pact-379310/workshop/workshop:${{ github.sha }}
+          env_vars: |
+            NODE_ENV=production
+          flags: "--port=8080"
+          region: "europe-west1"
+
+      - name: "deploy output"
+        run: 'curl "${{ steps.deploy.outputs.url }}"'
+
+
